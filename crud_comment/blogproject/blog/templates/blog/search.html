@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+<!-- {% extends 'index.html' %}
 
 {% block content %}
     {% if articles %}
@@ -12,7 +12,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for article in articles %}
+            {% for article in hashtag.blog_set.all %}
                 <tr>
                     <th scope="row">{{ forloop.counter }}</th>
                     <td>{{ article.published_at }}</td>
@@ -24,13 +24,47 @@
         </table>
     {% endif %}
     <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Hashtag 검색
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          {% for hashtag in hashtags.all %}
+          <a class="dropdown-item" href="#">{{ hashtag.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+{% endblock %} -->
+
+{% extends 'index.html' %}
+
+{% block content %}
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="dropdown">
         <button class="btn btn-primary float-right dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Hashtag 검색
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           {% for hashtag in hashtags.all %}
-          <a class="dropdown-item" href="{% url 'blog:search' hashtag.id %}">{{ hashtag.name }}</a>
+          <a href="{% url 'blog:search' hashtag.id %}">{{ hashtag.name }}</a>
           {% endfor %}
         </div>
       </div>
+      {% for blog in hashtag.blog_set.all %}
+      <div class="post-preview">
+        <a href="{% url 'blog:detail' blog.id %}">
+          <h2 class="post-title">
+            {{ blog.title }}
+          </h2>
+          <h3 class="post-subtitle">
+            {{ blog.content }}
+          </h3>
+        </a>
+        <p class="post-meta">
+          {{ blog.published_at }}</p>
+      </div>
+      <hr>
+      {% endfor %}
 {% endblock %}

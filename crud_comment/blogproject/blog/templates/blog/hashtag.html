@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <h1>New Hashtag</h1>
+        {{ error_message }}
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <input class="btn btn-dark" type="submit" value="제출하기">
+        </form>
+    </div>
+{% endblock %}

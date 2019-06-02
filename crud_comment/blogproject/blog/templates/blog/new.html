@@ -3,7 +3,8 @@
 <form method="POST">
     {% csrf_token %}
     <p>Title</p>{{ form.title }}<br><br>
-    <p>Content</p>{{ form.content}}
+    <p>Content</p>{{ form.content }}<br><br>
+    <p>Hashtags</p>{{ form.hashtags }}
     <br><input type="submit" value="submit">
 </form>
 {% endblock %}

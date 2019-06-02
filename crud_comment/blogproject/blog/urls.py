@@ -10,4 +10,6 @@ urlpatterns = [
     path('delete/<int:article_id>', views.delete, name="delete"),
     path('comment_delete/<int:article_id>/<int:comment_id>', views.comment_delete, name="comment_delete"),     
     path('comment_edit/<int:comment_id>', views.comment_edit, name="comment_edit"),
+    path('hashtag/', views.hashtagform, name='hashtag'),
+    path('search/<int:hashtag_id>/', views.search, name="search"),
 ]
