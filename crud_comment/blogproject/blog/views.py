@@ -1,13 +1,14 @@
 ﻿from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .models import Article, Comment, Hashtag
-from .forms import ArticleForm, CommentForm, HashtagForm
+from .forms import ArticleForm, CommentForm, HashtagForm, MediaForm
 
 # Create your views here.
 def main(request):
     articles = Article.objects.all()
     hashtags = Hashtag.objects.all()
-    return render(request, 'blog/main.html', {'articles':articles, 'hashtags': hashtags})
+    medias = Article.objects
+    return render(request, 'blog/main.html', {'articles':articles, 'hashtags': hashtags, 'medias': medias})
 
 def detail(request, article_id):
     article = get_object_or_404(Article, id=article_id)
@@ -109,3 +110,11 @@ def hashtagform(request, hashtag=None):
 def search(request, hashtag_id):
     hashtag = get_object_or_404(Hashtag, pk=hashtag_id)
     return render(request, 'blog/search.html', {'hashtag': hashtag})
+
+def mediaform(request):
+    form = MediaForm()
+    if request.method == "POST":
+        form = MediaForm(request.POST, request.FILES, instance=MediaForm)
+        if form.is_valid():
+            form.save()
+    return render(request, "blog/new.html", {'form':form})

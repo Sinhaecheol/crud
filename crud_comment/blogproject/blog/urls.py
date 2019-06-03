@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 from . import views
 
@@ -12,4 +14,4 @@ urlpatterns = [
     path('comment_edit/<int:comment_id>', views.comment_edit, name="comment_edit"),
     path('hashtag/', views.hashtagform, name='hashtag'),
     path('search/<int:hashtag_id>/', views.search, name="search"),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

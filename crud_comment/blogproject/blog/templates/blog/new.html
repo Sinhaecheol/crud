@@ -1,10 +1,11 @@
 {% extends 'index.html' %}
 {% block content %}
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <p>Title</p>{{ form.title }}<br><br>
     <p>Content</p>{{ form.content }}<br><br>
-    <p>Hashtags</p>{{ form.hashtags }}
+    <p>Hashtags</p>{{ form.hashtags }}<br><br>
+    <p>Image</p>{{ form.image }}
     <br><input type="submit" value="submit">
 </form>
 {% endblock %}

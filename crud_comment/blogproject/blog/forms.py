@@ -3,7 +3,7 @@ from .models import Article, Comment, Hashtag
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ["title", "content", "hashtags"]
+        fields = ["title", "content", "hashtags", "image"]
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -14,4 +14,8 @@ class HashtagForm(forms.ModelForm):
     class Meta:
         model = Hashtag
         fields = ['name']
-        
+
+class MediaForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ['image']

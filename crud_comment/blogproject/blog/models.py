@@ -7,7 +7,8 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     published_at = models.DateTimeField(null=False)
     hashtags = models.ManyToManyField('Hashtag', blank=True)
-
+    image = models.ImageField(upload_to='images/', blank=True)
+    
     def __str__(self):
         return self.title
 
