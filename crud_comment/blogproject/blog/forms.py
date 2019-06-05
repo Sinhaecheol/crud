@@ -14,8 +14,3 @@ class HashtagForm(forms.ModelForm):
     class Meta:
         model = Hashtag
         fields = ['name']
-
-class MediaForm(forms.ModelForm):
-    class Meta:
-        model = Article
-        fields = ['image']
