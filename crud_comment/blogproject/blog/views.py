@@ -43,7 +43,9 @@ def new(request):
 def edit(request, article_id):
     article = get_object_or_404(Article, id=article_id)
     if request.method == "POST":
-        form = ArticleForm(request.POST, instance=article)
+        form = ArticleForm(request.POST, request.FILES, instance=article)
+        if ("image" in request.FILES) and ("image-clear" in request.POST):
+            del request.FILES["image"]
         if form.is_valid():
             article = form.save(commit=False)
             article.title = form.cleaned_data["title"]
